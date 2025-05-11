@@ -1,0 +1,17 @@
+.debtor-table {
+	width: 100%;
+	border-collapse: collapse;
+
+	&__header th {
+		text-align: left;
+		padding: 12px;
+		background-color: #f2f2f2;
+		font-weight: bold;
+		color: #666;
+	}
+
+	&__row td {
+		padding: 12px;
+		border-top: 1px solid #eaeaea;
+	}
+}

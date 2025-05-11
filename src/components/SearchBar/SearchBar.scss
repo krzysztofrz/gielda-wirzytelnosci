@@ -1,0 +1,27 @@
+.search-bar {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 16px;
+	background-color: #002d4f;
+
+	&__label {
+		color: white;
+		margin-right: 8px;
+	}
+
+	&__input {
+		flex: 1;
+		padding: 8px;
+		font-size: 16px;
+	}
+
+	&__button {
+		background-color: red;
+		color: white;
+		padding: 8px 16px;
+		border: none;
+		font-weight: bold;
+		cursor: pointer;
+	}
+}
