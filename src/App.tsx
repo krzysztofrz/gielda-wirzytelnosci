@@ -1,35 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Debtor } from "./types/Debtor";
+import { getTopDebts, getFilteredDebts } from "./api/debts";
 import { SearchBar } from "./components/SearchBar/SearchBar";
 import { DebtorTable } from "./components/DebtorTable/DebtorTable";
-import { Debtor } from "./types/Debtor";
 
 const App = () => {
+	const [debts, setDebts] = useState<Debtor[]>([]);
 	const [query, setQuery] = useState("");
-	const [results, setResults] = useState<Debtor[]>([]);
 
-	const handleSearch = () => {
-		// Tu potem podepniesz zapytanie do API
-		// Tymczasowo mock:
-		setResults([
-			{
-				name: "Firma XYZ",
-				nip: "1234567890",
-				amount: 1200,
-				date: "01-01-2024",
-			},
-			{
-				name: "ABC Sp. z o.o.",
-				nip: "9876543210",
-				amount: 3000,
-				date: "15-03-2024",
-			},
-		]);
+	const fetchTop = async () => {
+		const data = await getTopDebts();
+		setDebts(data);
 	};
+
+	const handleSearch = async () => {
+		try {
+			if (query.length >= 3) {
+				const results = await getFilteredDebts(query);
+				setDebts(results);
+			} else {
+				await fetchTop(); // fallback do TOP10
+			}
+		} catch (err) {
+			alert("Wprowadź co najmniej 3 znaki lub spróbuj ponownie.");
+		}
+	};
+
+	useEffect(() => {
+		fetchTop();
+	}, []);
 
 	return (
 		<div>
 			<SearchBar value={query} onChange={setQuery} onSearch={handleSearch} />
-			<DebtorTable data={results} />
+			<DebtorTable data={debts} />
 		</div>
 	);
 };

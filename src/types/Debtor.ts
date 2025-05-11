@@ -1,6 +1,11 @@
 export interface Debtor {
-	name: string;
-	nip: string;
-	amount: number;
-	date: string; // format: dd-mm-yyyy
+	Id: number;
+	Name: string;
+	NIP: string;
+	Date: string;
+	Value: number;
+	Address: string;
+	DocumentType: string;
+	Price: number;
+	Number: string;
 }
