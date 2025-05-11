@@ -1,0 +1,21 @@
+/* src/styles/global.scss */
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+	font-family: sans-serif;
+	background-color: #f8f8f8;
+}
+
+button {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}

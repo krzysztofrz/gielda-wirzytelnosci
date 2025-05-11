@@ -20,55 +20,57 @@ const formatDate = (iso: string) => {
 
 export const DebtorTable: React.FC<Props> = ({ data, onSort, currentSort }) => {
 	return (
-		<table className="debtor-table">
-			<thead>
-				<tr className="debtor-table__header">
-					<th onClick={() => onSort("Name")}>
-						Dłużnik
-						<span
-							className={`sort-icon ${
-								currentSort.key === "Name" ? currentSort.direction : ""
-							}`}
-						/>
-					</th>
-					<th onClick={() => onSort("NIP")}>
-						NIP
-						<span
-							className={`sort-icon ${
-								currentSort.key === "NIP" ? currentSort.direction : ""
-							}`}
-						/>
-					</th>
-					<th onClick={() => onSort("Value")}>
-						Kwota zadłużenia
-						<span
-							className={`sort-icon ${
-								currentSort.key === "Value" ? currentSort.direction : ""
-							}`}
-						/>
-					</th>
-					<th onClick={() => onSort("Date")}>
-						Data powstania zobowiązania
-						<span
-							className={`sort-icon ${
-								currentSort.key === "Date" ? currentSort.direction : ""
-							}`}
-						/>
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				{data.map((debtor, idx) => (
-					<tr className="debtor-table__row" key={idx}>
-						<td>{debtor.Name}</td>
-						<td>{debtor.NIP}</td>
-						<td>
-							{debtor.Value !== undefined ? debtor.Value.toFixed(2) : "-"}
-						</td>
-						<td>{formatDate(debtor.Date)}</td>
+		<div className="debtor-table-wrapper">
+			<table className="debtor-table">
+				<thead>
+					<tr className="debtor-table__header">
+						<th onClick={() => onSort("Name")}>
+							Dłużnik
+							<span
+								className={`sort-icon ${
+									currentSort.key === "Name" ? currentSort.direction : ""
+								}`}
+							/>
+						</th>
+						<th onClick={() => onSort("NIP")}>
+							NIP
+							<span
+								className={`sort-icon ${
+									currentSort.key === "NIP" ? currentSort.direction : ""
+								}`}
+							/>
+						</th>
+						<th onClick={() => onSort("Value")}>
+							Kwota zadłużenia
+							<span
+								className={`sort-icon ${
+									currentSort.key === "Value" ? currentSort.direction : ""
+								}`}
+							/>
+						</th>
+						<th onClick={() => onSort("Date")}>
+							Data powstania zobowiązania
+							<span
+								className={`sort-icon ${
+									currentSort.key === "Date" ? currentSort.direction : ""
+								}`}
+							/>
+						</th>
 					</tr>
-				))}
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					{data.map((debtor, idx) => (
+						<tr className="debtor-table__row" key={idx}>
+							<td>{debtor.Name}</td>
+							<td>{debtor.NIP}</td>
+							<td>
+								{debtor.Value !== undefined ? debtor.Value.toFixed(2) : "-"}
+							</td>
+							<td>{formatDate(debtor.Date)}</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
 	);
 };
